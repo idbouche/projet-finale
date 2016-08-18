@@ -3,12 +3,16 @@ html
   head
     title= title
     meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
-    link(rel='stylesheet', href='/node_modules/angular-material/angular-material.css')
+    link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+  body(ng-app="BlankApp" ng-cloak)
     block content
-    script(src='/node_modules/angular/angular.js')
-    script(src='/node_modules/angular-aria/angular-aria.js')
-    script(src='/node_modules/angular-animate/angular-animate.js')
-    script(src='/node_modules/angular-material/angular-material.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js')
+    // Angular Material Library
+    script(src='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js')
+
     script(src='/javascripts/app.js')

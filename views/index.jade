@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    p Welcome to #{title}
+    md-button(md-colors="::{background: '{{theme}}-primary-700'}") Disabled Button 
+    form(name='colorForm')
+        i.material-icons email
+        md-input-container
+            label Email
+            input(name='email', ng-model='email', required='')
+            div(ng-messages='userForm.lastName.$error')
+                div(ng-message='required') This is required!
+        i.material-icons vpn_key
+        md-input-container
+            label Pessword
+            input(name='password', ng-model='password', required='')
+            div(ng-messages='userForm.lastName.$error')
+                div(ng-message='required') This is required!
+    
+    md-icon.material-icons(md-font-set='md') favorite
+    i.material-icons timer 3
+    h1 {{ 1+1 }}
