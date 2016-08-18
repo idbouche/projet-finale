@@ -1,0 +1,28 @@
+extends ./../layout
+
+block content
+    h1.center Signup
+    div(layout='row', layout-align='center')
+        form.flex-66(method='POST')
+            md-content.md-no-momentum
+                md-input-container.md-icon-float.md-block
+                    label Name
+                    md-icon.material-icons person      
+                    input(type='text', name='nom')
+                md-input-container.md-block
+                    label Email
+                    md-icon.email.material-icons email
+                    input(ng-model='user.email', type='email', ng-required='true', name='email')
+                md-input-container.md-block(md-no-float='')
+                    label Password
+                    md-icon.material-icons vpn_key
+                    input(name='password', type='password', ng-required='true')
+                md-input-container.md-block(md-no-float='')
+                    label Conferm Password
+                    md-icon.material-icons vpn_key
+                    input( type='password', ng-required='true')
+                md-input-container.md-block(md-no-float='')
+                    input(name='address', type='text', placeholder='Address')
+                    md-icon.material-icons place
+                 md-button.md-raised.md-primary(type='submit') Inscrire
+            
