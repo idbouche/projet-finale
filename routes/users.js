@@ -35,15 +35,17 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-
+  console.log('post');
   async.waterfall([
     function(callback) {
       var user = new User();
 
-      user.profile.name = req.body.name;
+      user.profile.name = req.body.nom;
       user.email = req.body.email;
       user.password = req.body.password;
       user.profile.picture = user.gravatar();
+      user.roll = 1;
+      user.address = req.body.address;
 
       User.findOne({ email: req.body.email }, function(err, existingUser) {
 
@@ -56,18 +58,6 @@ router.post('/signup', function(req, res, next) {
             callback(null, user);
           });
         }
-      });
-    },
-
-    function(user) {
-      var cart = new Cart();
-      cart.owner = user._id;
-      cart.save(function(err) {
-        if (err) return next(err);
-        req.logIn(user, function(err) {
-          if (err) return next(err);
-          res.redirect('/profile');
-        });
       });
     }
   ]);
@@ -96,6 +86,12 @@ router.post('/edit-profile', function(req, res, next) {
       req.flash('success', 'Successfully Edited your profile');
       return res.redirect('/edit-profile');
     });
+  });
+});
+
+router.get('/forget', function(req, res, next) {
+  res.render('accounts/forget', {
+    errors: req.flash('errors')
   });
 });
 

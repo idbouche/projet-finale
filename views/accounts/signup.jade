@@ -1,28 +1,29 @@
 extends ./../layout
 
 block content
+    if (errors.length > 0)
+        p= errors 
     h1.center Signup
-    div(layout='row', layout-align='center')
-        form.flex-66(method='POST')
-            md-content.md-no-momentum
-                md-input-container.md-icon-float.md-block
-                    label Name
-                    md-icon.material-icons person      
-                    input(type='text', name='nom')
-                md-input-container.md-block
-                    label Email
-                    md-icon.email.material-icons email
-                    input(ng-model='user.email', type='email', ng-required='true', name='email')
-                md-input-container.md-block(md-no-float='')
-                    label Password
-                    md-icon.material-icons vpn_key
-                    input(name='password', type='password', ng-required='true')
-                md-input-container.md-block(md-no-float='')
-                    label Conferm Password
-                    md-icon.material-icons vpn_key
-                    input( type='password', ng-required='true')
-                md-input-container.md-block(md-no-float='')
-                    input(name='address', type='text', placeholder='Address')
-                    md-icon.material-icons place
-                 md-button.md-raised.md-primary(type='submit') Inscrire
-            
+    .container
+        section
+            #register.animate.form
+                form(action='mysuperscript.php', autocomplete='on')
+                    h1  Sign up 
+                    p
+                        label.uname(for='usernamesignup', data-icon='u') Your username
+                        input#usernamesignup(name='usernamesignup', required='required', type='text', placeholder='mysuperusername690')
+                    p
+                        label.youmail(for='emailsignup', data-icon='e')  Your email
+                        input#emailsignup(name='emailsignup', required='required', type='email', placeholder='mysupermail@mail.com')
+                    p
+                        label.youpasswd(for='passwordsignup', data-icon='p') Your password 
+                        input#passwordsignup(name='passwordsignup', required='required', type='password', placeholder='eg. X8df!90EO')
+                    p
+                        label.youpasswd(for='passwordsignup_confirm', data-icon='p') Please confirm your password 
+                        input#passwordsignup_confirm(name='passwordsignup_confirm', required='required', type='password', placeholder='eg. X8df!90EO')
+                    p.signin.button
+                        input(type='submit', value='Sign up')
+                    p.change_link
+                        | Already a member ?
+                        a.to_register(href='/login')  Go and log in 
+                            

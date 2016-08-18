@@ -1,18 +1,28 @@
 extends ./../layout
 
 block content
-    .center
-        h1 Login
-        form(method='POST')
-            md-input-container
-                label Email
-                md-icon.email.material-icons email
-                input(name='email', required='true', type= 'email')
-            br
-            md-input-container
-                label Pessword
-                md-icon.vpn_key.material-icons vpn_key
-                input(name='password', required='true', type= 'password')
-            br
-            md-button.md-raised.md-primary(type='submit') Login 
+    .container
+        section
+            #container_demo
+                a#toregister.hiddenanchor
+                a#tologin.hiddenanchor
+                #wrapper
+                    #login.animate.form
+                        form(method= 'post')
+                            h1 Log in
+                            p
+                                label.uname(for='username', data-icon='u')  Your email or username 
+                                input#username(name='username', required='required', type='text', placeholder='myusername or mymail@mail.com')
+                            p
+                                label.youpasswd(for='password', data-icon='p')  Your password 
+                                input#password(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
+                            p.keeplogin
+                                input#loginkeeping(type='checkbox', name='loginkeeping', value='loginkeeping')
+                                label(for='loginkeeping') Keep me logged in
+                            p.login.button
+                                input(type='submit', value='Login')
+                            p.change_link
+                                | Not a member yet ?
+                                a.to_register(href='/signup') Join us
+
     

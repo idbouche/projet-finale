@@ -15,10 +15,7 @@ var UserSchema = new Schema({
   },
 
   address: String,
-  history: [{
-    paid: { type: Number, default: 0},
-    item: { type: Schema.Types.ObjectId, ref: 'Product'}
-  }]
+  roll: { type: Number, default: 1},
 });
 
 /*  Hash the password before we even save it to the database */
