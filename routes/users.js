@@ -12,7 +12,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/profile',
+  successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true
 }));
@@ -23,7 +23,7 @@ router.get('/profile', passportConf.isAuthenticated, function(req, res, next) {
     .populate('history.item')
     .exec(function(err, foundUser) {
       if (err) return next(err);
-
+      console.log(foundUser);
       res.render('accounts/profile', { user: foundUser });
     });
 });
@@ -55,7 +55,7 @@ router.post('/signup', function(req, res, next) {
         } else {
           user.save(function(err, user) {
             if (err) return next(err);
-            callback(null, user);
+            return res.redirect('/');
           });
         }
       });
@@ -69,22 +69,22 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
-router.get('/edit-profile', function(req, res, next) {
-  res.render('accounts/edit-profile', { message: req.flash('success')});
+router.get('/edit', function(req, res, next) {
+  res.render('accounts/edit', { message: req.flash('success')});
 });
 
-router.post('/edit-profile', function(req, res, next) {
+router.post('/edit', function(req, res, next) {
   User.findOne({ _id: req.user._id }, function(err, user) {
 
     if (err) return next(err);
 
-    if (req.body.name) user.profile.name = req.body.name;
+    if (req.body.nom) user.profile.name = req.body.nom;
     if (req.body.address) user.address = req.body.address;
 
     user.save(function(err) {
       if (err) return next(err);
       req.flash('success', 'Successfully Edited your profile');
-      return res.redirect('/edit-profile');
+      return res.redirect('/edit');
     });
   });
 });

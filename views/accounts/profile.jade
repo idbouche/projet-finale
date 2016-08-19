@@ -1,0 +1,9 @@
+extends ./../layout
+block content
+    img(src='#{user.profile.picture}', alt='')
+    br 
+    p Name: #{user.profile.name}
+    p Email: #{user.email}
+    
+    
+    a(href="/edit/#{user.id}") Edite
