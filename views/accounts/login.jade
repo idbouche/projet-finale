@@ -1,28 +1,29 @@
 extends ./../layout
 
 block content
-    if (message.length > 0)
-        p= message 
-    .container
-        section
-            #container_demo
-                #wrapper
-                    #login.animate.form
-                        form(method= 'post')
-                            h1 Log in
-                            p
-                                label.uname(for='username', data-icon='u')  Your email or username 
-                                input#username(name='email', required='required', type='text', placeholder='exempl@mail.com')
-                            p
-                                label.youpasswd(for='password', data-icon='p')  Your password 
-                                input#password(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
-                            p.keeplogin
-                                input#loginkeeping(type='checkbox', name='loginkeeping', value='loginkeeping')
-                                label(for='loginkeeping') Keep me logged in
-                            p.login.button
-                                input(type='submit', value='Login')
-                            p.change_link
-                                | Not a member yet ?
-                                a.to_register(href='/signup') Join us
+    main.mdl-layout__content.mdl-color--grey-100
+        if (message.length > 0)
+            p= message 
+        .container
+            section
+                #container_demo
+                    #wrapper
+                        #login.animate.form
+                            form(method= 'post')
+                                h1 Log in
+                                p
+                                    label.uname(for='username', data-icon='u')  Your email or username 
+                                    input#username(name='email', required='required', type='text', placeholder='exempl@mail.com')
+                                p
+                                    label.youpasswd(for='password', data-icon='p')  Your password 
+                                    input#password(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
+                                p.keeplogin
+                                    input#loginkeeping(type='checkbox', name='loginkeeping', value='loginkeeping')
+                                    label(for='loginkeeping') Keep me logged in
+                                p.login.button
+                                    input(type='submit', value='Login')
+                                p.change_link
+                                    | Not a member yet ?
+                                    a.to_register(href='/signup') Join us
 
-    
+        

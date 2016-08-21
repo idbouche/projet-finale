@@ -1,13 +1,13 @@
 extends ./../layout
 
 block content
-    
-    h1.center Forget
-    div(layout='row', layout-align='center')
-        form.flex-66(method='POST')
-            md-content.md-no-momentum
-                md-input-container.md-block
-                    label Email
-                    md-icon.email.material-icons email
-                    input(ng-model='user.email', name='email', ng-required='true', type= 'email')
-            md-button.md-raised.md-primary(type='submit') Send 
+    main.mdl-layout__content.mdl-color--grey-100    
+        h1.center Forget
+        div(layout='row', layout-align='center')
+            form.flex-66(method='POST')
+                md-content.md-no-momentum
+                    md-input-container.md-block
+                        label Email
+                        md-icon.email.material-icons email
+                        input(ng-model='user.email', name='email', ng-required='true', type= 'email')
+                md-button.md-raised.md-primary(type='submit') Send 

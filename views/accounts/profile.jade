@@ -1,9 +1,11 @@
 extends ./../layout
 block content
-    img(src='#{user.profile.picture}', alt='')
-    br 
-    p Name: #{user.profile.name}
-    p Email: #{user.email}
-    
-    
-    a(href="/edit/#{user.id}") Edite
+    main.mdl-layout__content.mdl-color--grey-100
+        .mdl-grid.demo-content
+            img(src='#{user.profile.picture}', alt='')
+            br 
+            p Name: #{user.profile.name}
+            p Email: #{user.email}
+            
+            
+            a(href="/edit") Edite
