@@ -2,10 +2,19 @@ extends ./../layout
 block content
     main.mdl-layout__content.mdl-color--grey-100
         .mdl-grid.demo-content
-            img(src='#{user.profile.picture}', alt='')
-            br 
-            p Name: #{user.profile.name}
-            p Email: #{user.email}
-            
-            
-            a(href="/edit") Edite
+            .mdl-layout-spacer
+                img(src='#{user.profile.picture}', alt='')
+                br
+                br
+                table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+                    tbody
+                        tr
+                            td.mdl-data-table__cell--non-numeric Name: 
+                            td #{user.profile.name}
+                        tr
+                            td.mdl-data-table__cell--non-numeric Email: 
+                            td #{user.email}
+                        tr 
+                            td.mdl-data-table__cell--non-numeric 
+                                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect(href="/edit") Edite
+                        

@@ -1,6 +1,7 @@
 module.exports = {
 
-  database: 'mongodb://localhost:27017/final',
+  database: 'mongodb://momo:123456@ds017776.mlab.com:17776/mongomomo',
   port: 3000,
   secretKey: "Arash@$@!#@"
 }
+// mongodb://<mongomomo>:<123456>@ds017776.mlab.com:17776/mongomomo

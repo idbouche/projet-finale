@@ -34,7 +34,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: secret.secretKey,
-  store: new MongoStore({ url: secret.database, autoReconnect: true})
+  store: new MongoStore({ url: secret.database, autoReconnect: true}),
+  cookie: {
+    maxAge : 30000
+  }
 }));
 app.use(flash());
 app.use(passport.initialize());
