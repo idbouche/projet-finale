@@ -10,10 +10,10 @@ var UserSchema = new Schema({
   email: { type: String, unique: true, lowercase: true},
   password: { type: String},
   profile: {
-    name: { type: String},
+    name: { type: String, index : "text",unique : true,},
     picture: { type: String},
-    firstName: { type: String},
-    secondeName: { type: String},
+    firstName: { type: String, index : "text"},
+    secondeName: { type: String, index : "text"},
     prefirence: { type: String},
     address: { type: String},
     sex: { type: String},

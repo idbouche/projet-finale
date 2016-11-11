@@ -18,12 +18,9 @@ html
           .mdl-layout-spacer
           if user 
             .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
-              label.mdl-button.mdl-js-button.mdl-button--icon(for='search')
+              label#searchBtn.mdl-button.mdl-js-button.mdl-button--icon(for='search')
                 i.material-icons search
-              .mdl-textfield__expandable-holder
-                input#search.mdl-textfield__input(type='text', name='search',  placeholder='Name')  
-                label.mdl-textfield__label(for='search') Enter your query...
-                //button#search.mdl-button.mdl-textfield__button(value='ok') OK
+              input#search.mdl-textfield__input(type='text', name='search',  placeholder='Search per Name...')  
           button#hdrbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
             i.material-icons more_vert
           ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(for='hdrbtn')
@@ -89,4 +86,5 @@ html
               span.visuallyhidden Help
       block content
       script(defer='', src='https://code.getmdl.io/1.2.0/material.min.js')
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
       script(src='/javascripts/app.js')
