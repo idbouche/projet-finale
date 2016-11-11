@@ -36,16 +36,24 @@ router.get('/signup', function(req, res, next) {
 
 router.post('/signup', function(req, res, next) {
   console.log('post');
+  console.log(req.body)
   async.waterfall([
     function(callback) {
       var user = new User();
 
       user.profile.name = req.body.nom;
+      user.profile.firstName = req.body.firstname;
+      user.profile.secondeName = req.body.secondename;
+      user.profile.prefirence = req.body.prefirence;
+      user.profile.address = req.body.adress;
+      user.profile.sex = req.body.sex;
+      user.profile.age = req.body.age;
+      user.profile.presintation = req.body.presintation;
       user.email = req.body.email;
       user.password = req.body.password;
       user.profile.picture = user.gravatar();
+      user.created = new Date;
       user.roll = 1;
-      user.address = req.body.address;
 
       User.findOne({ email: req.body.email }, function(err, existingUser) {
 

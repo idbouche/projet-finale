@@ -36,7 +36,7 @@ app.use(session({
   secret: secret.secretKey,
   store: new MongoStore({ url: secret.database, autoReconnect: true}),
   cookie: {
-    maxAge : 30000
+    maxAge : 3000000
   }
 }));
 app.use(flash());

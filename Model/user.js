@@ -8,15 +8,24 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
 
   email: { type: String, unique: true, lowercase: true},
-  password: String,
-
+  password: { type: String},
   profile: {
-    name: { type: String, default: ''},
-    picture: { type: String, default: ''}
+    name: { type: String},
+    picture: { type: String},
+    firstName: { type: String},
+    secondeName: { type: String},
+    prefirence: { type: String},
+    address: { type: String},
+    sex: { type: String},
+    age: { type: String},
+    presintation: { type: String, default: 'Rien'},
   },
-
-  address: String,
   roll: { type: Number, default: 1},
+  friends:{
+    type: []
+  },
+  created: { type: Date, default: Date.now },
+  updated: { type: Date, default: Date.now },
 });
 
 /*  Hash the password before we even save it to the database */
