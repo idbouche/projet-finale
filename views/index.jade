@@ -14,14 +14,13 @@ block content
   main.mdl-layout__content.mdl-color--grey-100
     .mdl-grid.demo-content
       .demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--8-col.mdl-grid.searchShow
-       
-      //.demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--8-col.mdl-grid
-        h2.mdl-card__title-text Updates
-         
+      .demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--8-col.mdl-grid
+         ul.demo-list-three.mdl-list.messageShow
       .demo-cards.mdl-cell.mdl-cell--4-col-tablet.mdl-grid.mdl-grid--no-spacing
         .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--12-col-desktop
           .mdl-card__title.mdl-card--expand.mdl-color--teal-300
-            h2.mdl-card__title-text Updates
+            ul.listAmie
+            h2.mdl-card__title-text List d'amies
           .mdl-card__supporting-text.mdl-color-text--grey-600
             | Non dolore elit adipisicing ea reprehenderit consectetur culpa.
           .mdl-card__actions.mdl-card--border
@@ -51,3 +50,15 @@ block content
             a.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-color-text--blue-grey-50(href='#') Change location
             .mdl-layout-spacer
             i.material-icons location_on
+
+      .demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid
+        form(action='/message', autocomplete='on', method='post')
+          .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            
+            textarea#schools.mdl-textfield__input(type='text', rows='5', name='message')
+            label.mdl-textfield__label(for='schools') Schools attended
+            p
+              br
+              br            
+              button#sendMessage.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent(type='submit') Envoyez
+         

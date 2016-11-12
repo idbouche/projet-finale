@@ -31,7 +31,7 @@ html
           header.demo-drawer-header
             img.demo-avatar(src='#{user.profile.picture}')
             .demo-avatar-dropdown
-              span '#{user.email}'
+              span #{user.email}
               .mdl-layout-spacer
               button#accbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
                 i.material-icons(role='presentation') arrow_drop_down
@@ -59,9 +59,8 @@ html
       else
         .demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
           header.demo-drawer-header
-            img.demo-avatar(src='')
+            
             .demo-avatar-dropdown
-              span exempl@exempl.com
               .mdl-layout-spacer
               button#accbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
                 i.material-icons(role='presentation') arrow_drop_down

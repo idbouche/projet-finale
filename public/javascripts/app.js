@@ -1,5 +1,32 @@
 
 $(document).ready(function(){
+
+     $.get( "/friends")
+        .done(function( data ) { 
+            if (data.user.length >= 1){
+                console.dir(data.user)
+                for(i=0; i<data.user.length; i++){
+                    $(".listAmie").append('<li><img src="'+ data.user[i].profile.picture+
+                    '" class="demo-avatar" alt=""> '+ data.user[i].profile.firstName+
+                    ' '+ data.user[i].profile.secondeName+'</li>')
+                }  
+            }
+        });
+
+
+        $.get( "/message")
+            .done(function( data ) {
+                console.log(data)
+                if (data.message.length >= 1){
+                     for(i=0; i < data.message.length; i++){
+                        $(".messageShow").append('<li class="mdl-list__item mdl-list__item--three-line"><span class="mdl-list__item-primary-content"><img class="material-icons mdl-list__item-avatar" src= "'
+                        +data.message[i].messageAvatar+'"><span>'+data.message[i].userName+
+                        '</span><span class="mdl-list__item-text-body">'+data.message[i].message+'</span></span></li>')
+                    }  
+                } 
+                $('#schools').val('');   
+            });
+        });
     
     document.onkeypress=function(e){
         var textSearch = $('#search').val();
@@ -7,7 +34,7 @@ $(document).ready(function(){
                 console.log(e.code)
                 $.get( "/search", { name: textSearch} )
                 .done(function( data ) {
-                 
+                    console.log(data.result.length)
                     if (data.result.length >= 1){
                         console.dir(data.result[0].profile.name)
                         $(".searchShow").append('<div class="mdl-layout-spacer"><img src="'+data.result[0].profile.picture+
@@ -43,15 +70,15 @@ $(document).ready(function(){
 
     $("#searchBtn").click(function(){
         var textSearch = $('#search').val();
-        $.get( "/search", { name: textSearch} )
-                .done(function( data ) {
-                 
-                    if (data.result.length >= 1){
-                        console.dir(data.result[0].profile.name)
-                    }
-                    $('#search').val('');
-                });
-        
-
+        $.get( "/friendrs")
+        .done(function( data ) {
+            if (data.user.length >= 1){
+                console.dir(data.result[0].profile.name)
+            }
+            $('#search').val('');
+        });
     });
-});
+
+    $("#sendMessage").click(function(){
+        
+    })

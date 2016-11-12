@@ -17,13 +17,14 @@ var UserSchema = new Schema({
     prefirence: { type: String},
     address: { type: String},
     sex: { type: String},
-    age: { type: String},
+    age: { type: Number},
     presintation: { type: String, default: 'Rien'},
   },
   roll: { type: Number, default: 1},
   friends:{
     type: []
   },
+  status: { type: Boolean, default: false},
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
 });
