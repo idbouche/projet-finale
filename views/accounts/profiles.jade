@@ -1,0 +1,47 @@
+extends ./../layout
+block content
+    main.mdl-layout__content.mdl-color--grey-100
+        .mdl-grid.demo-content.mdl-grid
+            .mdl-layout-spacer
+                img(src='#{profele.profile.picture}', alt='')
+                br
+                br
+                if profele.status
+                    #chat.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-color--wihte.mdl-color-text--blue Chat 
+                .mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-color--wihte.mdl-color-text--blue Message 
+                table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.mdl-cell--3-col
+                    tbody
+                        tr
+                            td.mdl-data-table__cell--non-numeric Name: 
+                            td #{profele.profile.name}
+                        tr
+                            td.mdl-data-table__cell--non-numeric Email: 
+                            td #{profele.email}
+                        tr
+                            td.mdl-data-table__cell--non-numeric Prefirence: 
+                            td #{profele.profile.prefirence}
+                        tr
+                            td.mdl-data-table__cell--non-numeric Sex: 
+                            td #{profele.profile.sex}
+                        
+            .mdl-card__supporting-text.mdl-color-text--grey-600.mdl-cell--5-col
+                ul.demo-list-three.mdl-list
+                    li.mdl-list__item.mdl-list__item--three-line
+                        span.mdl-list__item-primary-content
+                            i.material-icons.mdl-list__item-avatar person
+                            span Bryan Cranston
+                            span.mdl-list__item-text-body
+                                | Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+                                | for playing Hal in Malcom in the Middle.
+                form(action='/message', autocomplete='on', method='post')
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+
+                        textarea#schools.mdl-textfield__input(type='text', rows='5', name='message')
+                        label.mdl-textfield__label(for='schools') Schools attended
+                    p           
+                        button#sendMessage.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent(type='submit') Envoyez
+            
+
+            .demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--6-col.mdl-grid
+                .messageUser.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-color--wihte.mdl-color-text--blue Voire les messages
+                ul.demo-list-three.mdl-list.messageShows                

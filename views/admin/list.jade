@@ -2,19 +2,25 @@ extends ./../layout
 block content
     main.mdl-layout__content.mdl-color--grey-100
         .mdl-grid.demo-content
-            table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-shadow--2dp
+            table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.mdl-shadow--2dp.mdl-cell--12-col
                 thead
                     tr
                         th.mdl-data-table__cell--non-numeric Users
+                        th.mdl-data-table__cell--non-numeric Edite
+                        th.mdl-data-table__cell--non-numeric Message
+                        th.mdl-data-table__cell--non-numeric Delete
                 tbody
                     each user in users
                         tr
                             td.mdl-data-table__cell--non-numeric #{user.profile.name}
-                            td
+                            td.mdl-data-table__cell--non-numeric
                                 a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored(href='/admin_edit/#{user.id}')
                                     i.material-icons create
-                                        
-                            td
+                            td.mdl-data-table__cell--non-numeric
+                                a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored(href='/message/#{user.id}')
+                                    i.material-icons message
+
+                            td.mdl-data-table__cell--non-numeric
                                 a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored(href='/delete/#{user.id}')
                                     i.material-icons delete
         

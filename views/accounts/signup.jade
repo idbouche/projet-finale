@@ -1,5 +1,4 @@
 extends ./../layout
-
 block content
     main.mdl-layout__content.mdl-color--grey-100
         if (errors.length > 0)
@@ -30,7 +29,7 @@ block content
                                 input#usernamesignup(name='sex', required='required', type='text', placeholder='sex')
                             p
                                 label.uname(for='usernamesignup', data-icon='u') Age
-                                input#usernamesignup(name='age', required='required', type='text', placeholder='age')
+                                input#usernamesignup(name='age', required='required', type='number', placeholder='age')
                             p
                                 label.uname(for='usernamesignup', data-icon='u') Adress
                                 input#usernamesignup(name='adress', required='required', type='text', placeholder='adress')

@@ -29,7 +29,7 @@ passport.use('local-login', new LocalStrategy({
     }
 
     if (!user.comparePassword(password)) {
-      return done(null, false, req.flash('loginMessage', 'Oops! Wrong Password pal'));
+      return done(null, false, req.flash('loginMessage', 'No user has been found'));
     }
     return done(null, user);
   });
@@ -49,7 +49,7 @@ passport.use('local-admin_login', new LocalStrategy({
     }
 
     if (!user.comparePassword(password)) {
-      return done(null, false, req.flash('loginMessage', 'Oops! Wrong Password pal'));
+      return done(null, false, req.flash('loginMessage', 'No user has been found'));
     }
     return done(null, user);
   });

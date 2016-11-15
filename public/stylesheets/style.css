@@ -164,3 +164,13 @@ _:-ms-input-placeholder, :root .demo-graph {
   box-sizing: border-box;
   align-items: center;
 }
+
+.false:before{
+  content: "Offline";
+  color : orangered
+}
+.true:before{
+   content: "Online";
+   color : mediumseagreen
+}
+

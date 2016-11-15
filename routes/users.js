@@ -28,6 +28,17 @@ router.get('/profile', passportConf.isAuthenticated, function(req, res, next) {
     });
 });
 
+router.get('/profiles', passportConf.isAuthenticated, function(req, res, next) {
+
+  User
+    .findOne({ _id: req.query.id })
+    .populate('history.item')
+    .exec(function(err, foundUser) {
+      if (err) return next(err);
+      res.render('accounts/profiles', { profele: foundUser });
+    });
+});
+
 router.get('/signup', function(req, res, next) {
   res.render('accounts/signup', {
     errors: req.flash('errors')
@@ -72,9 +83,18 @@ router.post('/signup', function(req, res, next) {
 });
 
 
-router.get('/logout', function(req, res, next) {
-  req.logout();
-  res.redirect('/');
+router.get('/logout', function(req, res, next) {  
+  User.findOne({ _id: req.user._id}, function(err, user) {
+        if (err) return next(err);
+        //console.log(user)
+        user.status = false
+        user.save(function(err) {
+            if (err) return console.log(err);
+            req.logout();
+            res.redirect('/');
+        });
+  });
+  
 });
 
 router.get('/edit', function(req, res, next) {

@@ -30,7 +30,7 @@ router.get('/invet', passportConf.isAuthenticated, function(req, res, next) {
   var textSearch = req.query.email
   var mailOptions = {
     from: '"'+ req.user.name+' 👥 " '+req.user.email , // sender address 
-    to: secretConf.userEmail, // list of receivers 
+    to: req.query.email, // list of receivers 
     subject: 'Hello ✔', // Subject line 
     text: 'Hello world 🐴', // plaintext body 
     html: '<a href="http://localhost:3000/accept/'+req.user._id+'/'+req.query.idi+'">Accept Ivetation</a>' // html body 
@@ -79,7 +79,5 @@ router.get('/friends', passportConf.isAuthenticated, function(req, res, next) {
       });
     }); 
 });
-
-
 
 module.exports = router;

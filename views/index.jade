@@ -1,15 +1,4 @@
 extends layout
-block style
-  style.
-    #view-source {
-    position: fixed;
-    display: block;
-    right: 0;
-    bottom: 0;
-    margin-right: 40px;
-    margin-bottom: 40px;
-    z-index: 900;
-    }
 block content
   main.mdl-layout__content.mdl-color--grey-100
     .mdl-grid.demo-content
@@ -18,11 +7,11 @@ block content
          ul.demo-list-three.mdl-list.messageShow
       .demo-cards.mdl-cell.mdl-cell--4-col-tablet.mdl-grid.mdl-grid--no-spacing
         .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--12-col-desktop
-          .mdl-card__title.mdl-card--expand.mdl-color--teal-300
-            ul.listAmie
+          .mdl-card__title.mdl-card--expand.mdl-color--blue-100
+            ul.listAmie.demo-list-two.mdl-list
             h2.mdl-card__title-text List d'amies
-          .mdl-card__supporting-text.mdl-color-text--grey-600
-            | Non dolore elit adipisicing ea reprehenderit consectetur culpa.
+          .mdl-card__supporting-text.mdl-color-text--grey-600.chat
+            
           .mdl-card__actions.mdl-card--border
             a.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='#') Read More
         .demo-separator.mdl-cell--1-col
@@ -57,8 +46,6 @@ block content
             
             textarea#schools.mdl-textfield__input(type='text', rows='5', name='message')
             label.mdl-textfield__label(for='schools') Schools attended
-            p
-              br
-              br            
-              button#sendMessage.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent(type='submit') Envoyez
+          p            
+            button#sendMessage.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent(type='submit') Envoyez
          

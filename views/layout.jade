@@ -1,89 +1,101 @@
 doctype html
 html
-    head
-        title= title
-        meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
-        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-        link(rel='stylesheet', href='https://code.getmdl.io/1.2.0/material.indigo-pink.min.css')
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        link(rel="stylesheet", type="text/css", href="/stylesheets/css/demo.css" )
-        link(rel="stylesheet", type="text/css", href="/stylesheets/css/style.css" )
-        link(rel="stylesheet", type="text/css", href="/stylesheets/css/animate-custom.css" )
-        block style
-    body
-    .demo-layout.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
-      header.demo-header.mdl-layout__header.mdl-color--grey-100.mdl-color-text--grey-600
-        .mdl-layout__header-row
-          span.mdl-layout-title Resaux Social
-          .mdl-layout-spacer
-          if user 
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
-              label#searchBtn.mdl-button.mdl-js-button.mdl-button--icon(for='search')
-                i.material-icons search
-              input#search.mdl-textfield__input(type='text', name='search',  placeholder='Search per Name...')  
-          button#hdrbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
-            i.material-icons more_vert
-          ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(for='hdrbtn')
-            li.mdl-menu__item About
-            li.mdl-menu__item Contact
-      if user        
-        .demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
-          header.demo-drawer-header
-            img.demo-avatar(src='#{user.profile.picture}')
-            .demo-avatar-dropdown
-              span #{user.email}
-              .mdl-layout-spacer
-              button#accbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
-                i.material-icons(role='presentation') arrow_drop_down
-                span.visuallyhidden Accounts
-              ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='accbtn')
-                li.mdl-menu__item 
-                  a(href="/profile") Profile
-                li.mdl-menu__item Amies
-                li.mdl-menu__item
-                  a(href="/logout") Logout
-          nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') home
-              | Home
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') inbox
-              | Inbox
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') people
-              | Social
-            .mdl-layout-spacer
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') help_outline
-              span.visuallyhidden Help
-      else
-        .demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
-          header.demo-drawer-header
-            
-            .demo-avatar-dropdown
-              .mdl-layout-spacer
-              button#accbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
-                i.material-icons(role='presentation') arrow_drop_down
-                span.visuallyhidden Accounts
-              ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='accbtn')
-                li.mdl-menu__item 
-                  a(href="/profile") Profile
-                li.mdl-menu__item Amies
-          nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') home
-              | Home
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') inbox
-              | Inbox
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') people
-              | Social
-            .mdl-layout-spacer
-            a.mdl-navigation__link(href='')
-              i.mdl-color-text--blue-grey-400.material-icons(role='presentation') help_outline
-              span.visuallyhidden Help
-      block content
-      script(defer='', src='https://code.getmdl.io/1.2.0/material.min.js')
-      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
-      script(src='/javascripts/app.js')
+	head
+		title Resaux Social
+		meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		link(rel='stylesheet', href='https://code.getmdl.io/1.2.0/material.indigo-pink.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel="stylesheet", type="text/css", href="/stylesheets/css/demo.css" )
+		link(rel="stylesheet", type="text/css", href="/stylesheets/css/style.css" )
+		link(rel="stylesheet", type="text/css", href="/stylesheets/css/animate-custom.css" )
+		style.
+			#view-source {
+				position: fixed;
+				display: block;
+				right: 0;
+				bottom: 0;
+				margin-right: 40px;
+				margin-bottom: 40px;
+				z-index: 900;
+			}	
+	body
+		.demo-layout.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
+			header.demo-header.mdl-layout__header.mdl-color--grey-100.mdl-color-text--grey-600
+				.mdl-layout__header-row
+					span.mdl-layout-title Resaux Social
+					.mdl-layout-spacer
+					if user 
+						.mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
+							label#searchBtn.mdl-button.mdl-js-button.mdl-button--icon(for='search')
+								i.material-icons search
+							input#search.mdl-textfield__input(type='text', name='search',  placeholder='Search per Name...')  
+						button#hdrbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
+							i.material-icons more_vert
+						ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(for='hdrbtn')
+							li.mdl-menu__item About
+							li.mdl-menu__item Contact
+			if user        
+				.demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
+					header.demo-drawer-header
+						img.demo-avatar(src='#{user.profile.picture}')
+						.demo-avatar-dropdown
+							span#spanUser #{user.email}
+							.mdl-layout-spacer
+							button#accbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
+								i.material-icons(role='presentation') arrow_drop_down
+							span.visuallyhidden Accounts
+							ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='accbtn')
+								li.mdl-menu__item 
+									a(href="/profile") Profile
+								li.mdl-menu__item
+									a(href="/logout") Logout
+								if user.roll == "3"
+									li.mdl-menu__item
+										a(href="/list") List urers
+					nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
+						a.mdl-navigation__link(href='/')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') home
+							| Home
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') inbox
+							| Inbox
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') people
+							| Social
+						.mdl-layout-spacer
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') help_outline
+							span.visuallyhidden Help
+			else
+				.demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
+					header.demo-drawer-header				
+						.demo-avatar-dropdown
+							.mdl-layout-spacer
+							button#accbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
+								i.material-icons(role='presentation') arrow_drop_down
+							span.visuallyhidden Accounts
+							ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='accbtn')
+								li.mdl-menu__item 
+									a(href="/profile") Profile
+								li.mdl-menu__item Amies
+					nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') home
+							| Home
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') inbox
+							| Inbox
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') people
+							| Social
+						.mdl-layout-spacer
+						a.mdl-navigation__link(href='')
+							i.mdl-color-text--blue-grey-400.material-icons(role='presentation') help_outline
+							span.visuallyhidden Help
+			block content
+			script(defer='', src='/javascripts/vendor/material.min.js')
+			script(src='/javascripts/vendor/socketio.js')
+			script(src='/javascripts/vendor/jquery.js')
+			script(src='/javascripts/app.js')
+			script(src='/javascripts/chatClient.js')
