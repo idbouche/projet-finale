@@ -1,0 +1,23 @@
+extends ./../layout
+
+block content
+    main.mdl-layout__content.mdl-color--grey-100
+        if (message)
+            p= message 
+        .container
+            section
+                #container_demo
+                    #wrapper
+                        #login.animate.form
+                            form(method= 'post')
+                                h1 Reset Password
+                                p
+                                    label.uname(for='password', data-icon='p')  Your email or username 
+                                    input#username(name='password', required='required', type='text', placeholder='')
+                                p
+                                    label.youpasswd(for='password', data-icon='p')  Your password 
+                                    input#password(name='password', required='required', type='password', placeholder='')
+                               
+                                p.login.button
+                                    input(type='submit', value='Reset')
+

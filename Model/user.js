@@ -25,8 +25,8 @@ var UserSchema = new Schema({
     type: []
   },
   status: { type: Boolean, default: false},
-  created: { type: Date, default: Date.now },
-  updated: { type: Date, default: Date.now },
+  created: { type: Date },
+  updated: { type: Date },
 });
 
 /*  Hash the password before we even save it to the database */

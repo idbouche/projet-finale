@@ -4,7 +4,6 @@ var passportConf = require('../config/passport');
 var passport = require('passport');
 
 router.get('/admin_login', function(req, res) {
-  console.log(req);
   if (req.user && req.user.roll === 3) return res.redirect('/list');
   res.render('admin/admin_login', { message: req.flash('loginMessage')});
 });
@@ -32,9 +31,6 @@ router.post('/admin_edit/:id',passportConf.adminIsAuthenticated, function(req, r
   User.findOne({ _id: req.params.id }, function(err, user) {
 
     if (err) return next(err);
-
-    if (req.body.nom) user.profile.name = req.body.nom;
-    if (req.body.address) user.address = req.body.address;
     if (req.body.roll) user.roll = req.body.roll;
 
     user.save(function(err) {
@@ -45,5 +41,17 @@ router.post('/admin_edit/:id',passportConf.adminIsAuthenticated, function(req, r
   });
 })
 
+router.get('/delete', passportConf.adminIsAuthenticated,function(req, res, next) {
+  var id = req.query.id
+  User.remove({ _id:id }, function(err){
+    if (err){ 
+        console.log(err)
+        return 
+    }else{
+        req.flash('success', 'Successfully delet profile');
+        res.redirect('/list');
+    }  
+  });
+});
 
 module.exports = router;

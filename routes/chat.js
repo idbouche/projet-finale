@@ -37,9 +37,10 @@ module.exports = function(io) {
             var sizeSocket = Object.keys(SOCKET_LIST).length;
             var user = new Player(socket.id)
             USER_LIST[socket.id] = user;
+
             var sizeUsers = Object.keys(USER_LIST).length;
-            console.log(SOCKET_LIST)
-            if(dat.user != undefined){
+            console.log(dat)
+            if(dat.email != undefined){
                 User.findOne({ email: dat.email }, function(err, user) {
                 if (err) return next(err);
                 //console.log(user)
@@ -70,7 +71,6 @@ module.exports = function(io) {
 
 
         socket.on('disconnect',function(){
-            console.log('(disconnect)')
             delete SOCKET_LIST[socket.id];
             delete USER_LIST[socket.id];
         });

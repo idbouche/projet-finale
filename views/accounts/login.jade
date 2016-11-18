@@ -17,12 +17,13 @@ block content
                                 p
                                     label.youpasswd(for='password', data-icon='p')  Your password 
                                     input#password(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
-                                p.keeplogin
-                                    input#loginkeeping(type='checkbox', name='loginkeeping', value='loginkeeping')
-                                    label(for='loginkeeping') Keep me logged in
+                               
                                 p.login.button
                                     input(type='submit', value='Login')
+
                                 p.change_link
+                                    | Are you forget Pass ?
+                                    a.to_register(href='/forget') Forget 
                                     | Not a member yet ?
                                     a.to_register(href='/signup') Join us
 

@@ -103,11 +103,18 @@ router.get('/edit', function(req, res, next) {
 
 router.post('/edit', function(req, res, next) {
   User.findOne({ _id: req.user._id }, function(err, user) {
-
+    console.log(user)
     if (err) return next(err);
 
     if (req.body.nom) user.profile.name = req.body.nom;
-    if (req.body.address) user.address = req.body.address;
+    if (req.body.adress) user.profile.address = req.body.adress;
+    if (req.body.age) user.profile.age = req.body.age;
+    if (req.body.sex) user.profile.sex = req.body.sex;
+    if (req.body.email) user.email = req.body.email;
+    if (req.body.prefirence) user.profile.prefirence = req.body.prefirence;
+    if (req.body.firstname) user.profile.firstName = req.body.firstname;
+    if (req.body.secondeName) user.profile.secondeName = req.body.secondeName;
+    user.updated  = new Date
 
     user.save(function(err) {
       if (err) return next(err);
@@ -117,7 +124,21 @@ router.post('/edit', function(req, res, next) {
   });
 });
 
+
+
 router.get('/forget', function(req, res, next) {
+  res.render('accounts/forget', {
+    errors: req.flash('errors')
+  });
+});
+
+router.post('/forget', function(req, res, next) {
+  res.render('accounts/forget', {
+    errors: req.flash('errors')
+  });
+});
+
+router.get('/resetPass', function(req, res, next) {
   res.render('accounts/forget', {
     errors: req.flash('errors')
   });

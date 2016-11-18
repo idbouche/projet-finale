@@ -12,14 +12,7 @@ var SocketIOChat = require('socketio-chat');
 var async = require('async');
 
 
-
-/* GET home page. */
-router.get('/', passportConf.isAuthenticated, function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-
-router.post('/message', function(req, res, next) {
+router.post('/message', passportConf.isAuthenticated,function(req, res, next) {
   async.waterfall([
     function(callback) {
       var message = new Message();
@@ -74,10 +67,18 @@ router.get('/message', passportConf.isAuthenticated, function(req, res, next) {
      });
 //});*/
 
-router.post('/chat', passportConf.isAuthenticated, function(req, res, next) {
+router.get('/messageAdmin', passportConf.isAuthenticated, function(req, res, next) {
+    console.log('messageAdmin')
+     Message.find({ userId: req.query.id }, function(err, messages) {
+          if (messages) {
+            res.render('admin/message', {  messages: messages });
+          } else {
+            console.log(err)
+          }
+        });
+});
 
-    console.log(req.body)
-    console.log(req.query)
+router.post('/chat', passportConf.isAuthenticated, function(req, res, next) {
 
     async.waterfall([
     function(callback) {
@@ -94,6 +95,19 @@ router.post('/chat', passportConf.isAuthenticated, function(req, res, next) {
       });
     }
   ]);
+});
+
+router.get('/deleteMessage', passportConf.isAuthenticated,function(req, res, next) {
+  var id = req.query.id
+  Message.remove({ _id:id }, function(err){
+    if (err){ 
+        console.log(err)
+        return 
+    }else{
+        req.flash('success', 'Successfully delet profile');
+        res.redirect('/list');
+    }  
+  });
 });
 
 

@@ -1,0 +1,15 @@
+extends ./../layout
+block content
+    main.mdl-layout__content.mdl-color--grey-100
+        .mdl-grid.demo-content.mdl-grid
+            ul.demo-list-two.mdl-list
+                for message in messages
+                    li.mdl-list__item.mdl-list__item--two-line
+                        span.mdl-list__item-primary-content
+                            img.material-icons.mdl-list__item-avatar(src='#{message.messageAvatar}') 
+                            span= message.userName
+                            span.mdl-list__item-sub-title= message.message
+                        span.mdl-list__item-secondary-content
+                            span.mdl-list__item-secondary-info Action
+                            a.mdl-list__item-secondary-action.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored(href='deleteMessage?id=#{message._id}')
+                                i.material-icons delete

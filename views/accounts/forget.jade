@@ -1,13 +1,19 @@
 extends ./../layout
 
 block content
-    main.mdl-layout__content.mdl-color--grey-100    
-        h1.center Forget
-        div(layout='row', layout-align='center')
-            form.flex-66(method='POST')
-                md-content.md-no-momentum
-                    md-input-container.md-block
-                        label Email
-                        md-icon.email.material-icons email
-                        input(ng-model='user.email', name='email', ng-required='true', type= 'email')
-                md-button.md-raised.md-primary(type='submit') Send 
+    main.mdl-layout__content.mdl-color--grey-100
+        if (message)
+            p= message 
+        .container
+            section
+                #container_demo
+                    #wrapper
+                        #login.animate.form
+                            form(method= 'post')
+                                h1 Reset Password
+                                p
+                                    label.uname(for='username', data-icon='e')  Your email 
+                                    input#username(name='email', required='required', type='text', placeholder='exempl@mail.com')
+                               
+                                p.login.button
+                                    input(type='submit', value='Login')
