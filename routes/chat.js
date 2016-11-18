@@ -25,23 +25,22 @@ module.exports = function(io) {
         
     });
 
+    
+
     io.on('connection', function(socket) {
  
         socket.on('start',function(dat){
-            console.log(dat.user)
-            socket.id = dat.user;
+            console.log(dat.email)
+            socket.id = dat.email;
             SOCKET_LIST[socket.id] = socket
             
             var sizeSocket = Object.keys(SOCKET_LIST).length;
             var user = new Player(socket.id)
-            
             USER_LIST[socket.id] = user;
             var sizeUsers = Object.keys(USER_LIST).length;
-            console.log(sizeUsers)
-
+            console.log(SOCKET_LIST)
             if(dat.user != undefined){
-
-                User.findOne({ email: dat.user }, function(err, user) {
+                User.findOne({ email: dat.email }, function(err, user) {
                 if (err) return next(err);
                 //console.log(user)
                 user.status = dat.state
@@ -50,15 +49,25 @@ module.exports = function(io) {
                 });
             });
             }
-
-            socket.emit('message',{message:"Veuiller ressie"});
-
-                    
         });
 
-         socket.on('state',function (data) {
+        socket.on('subscribe', function(room) {
+            console.log('joining room', room);
+            socket.join(room);
 
-         })
+        });
+
+        socket.on('send message', function(data) {
+                console.log('sending room post', data.room);
+                socket.broadcast.emit('start chat',{data: data.room})
+                socket.broadcast.emit('conversation private post', {
+                    message: data.message,
+                    room : data.room
+                });
+        });
+
+       
+
 
         socket.on('disconnect',function(){
             console.log('(disconnect)')

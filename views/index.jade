@@ -8,9 +8,11 @@ block content
       .demo-cards.mdl-cell.mdl-cell--4-col-tablet.mdl-grid.mdl-grid--no-spacing
         .demo-updates.mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--4-col.mdl-cell--4-col-tablet.mdl-cell--12-col-desktop
           .mdl-card__title.mdl-card--expand.mdl-color--blue-100
-            ul.listAmie.demo-list-two.mdl-list
+            ul.listAmie.demo-list-two.mdl-list.amici
             h2.mdl-card__title-text List d'amies
-          .mdl-card__supporting-text.mdl-color-text--grey-600.chat
+            input(id="id", hidden, value='#{user._id}')
+            input(id="name", hidden, value='#{user.profile.name}')
+          .mdl-card__supporting-text.mdl-color-text--grey-600.chats
             
           .mdl-card__actions.mdl-card--border
             a.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='#') Read More

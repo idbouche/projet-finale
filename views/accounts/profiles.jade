@@ -25,21 +25,18 @@ block content
                             td #{profele.profile.sex}
                         
             .mdl-card__supporting-text.mdl-color-text--grey-600.mdl-cell--5-col
-                ul.demo-list-three.mdl-list
-                    li.mdl-list__item.mdl-list__item--three-line
-                        span.mdl-list__item-primary-content
-                            i.material-icons.mdl-list__item-avatar person
-                            span Bryan Cranston
-                            span.mdl-list__item-text-body
-                                | Bryan Cranston played the role of Walter in Breaking Bad. He is also known
-                                | for playing Hal in Malcom in the Middle.
-                form(action='/message', autocomplete='on', method='post')
+                ul.demo-list-three.mdl-list.chat
+                    
+                form(action='/chat', autocomplete='on', method='post')
                     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 
+                        input(name="avatar", type="text", value="#{profele.profile.picture}", hidden)
+                        input(name="id", type="text", value="#{profele._id}", hidden)
+                        input(name="name", type="text", value=" #{profele.profile.name}" ,hidden)
                         textarea#schools.mdl-textfield__input(type='text', rows='5', name='message')
-                        label.mdl-textfield__label(for='schools') Schools attended
+                        label.mdl-textfield__label(for='schools') Type message
                     p           
-                        button#sendMessage.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent(type='submit') Envoyez
+                        button#chat.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent(type='submit') Envoyez
             
 
             .demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--6-col.mdl-grid
