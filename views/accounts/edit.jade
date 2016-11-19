@@ -4,7 +4,10 @@ block content
     main.mdl-layout__content.mdl-color--grey-100
         .mdl-grid.demo-content
             if (message.length > 0)
-                p= message 
+                .alert.alert-success.text-center(role='alert')
+                     p= message 
+                br
+                br
             .container_demo
                 section
                     #wrapper

@@ -1,8 +1,10 @@
 var router = require('express').Router();
 var User = require('../model/user');
+var Reset = require('../model/restPass');
 var async = require('async');
 var passport = require('passport');
 var passportConf = require('../config/passport');
+var nodemailer = require('nodemailer');
 
 
 
@@ -127,21 +129,100 @@ router.post('/edit', function(req, res, next) {
 
 
 router.get('/forget', function(req, res, next) {
-  res.render('accounts/forget', {
-    errors: req.flash('errors')
-  });
+  
+  res.render('accounts/forget');
 });
 
 router.post('/forget', function(req, res, next) {
-  res.render('accounts/forget', {
-    errors: req.flash('errors')
-  });
+  User.findOne({ email: req.body.email }, function(err, reset) {
+      if(err){
+        res.render('accounts/forget', {
+            errors: req.flash('errors')
+        });
+        return
+      }else{
+          var id ='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+              function(c) {
+                var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;
+                return v.toString(16);
+            });
+            var date = new Date();
+            async.waterfall([
+              function(callback) {
+                var reset = new Reset();
+                reset.idU = id;
+                reset.email = req.body.email;
+                reset.date = date.getTime();
+
+                reset.save(function(err, resets) {
+                  if (err) return next(err);
+                  console.log(resets)
+                  var id = resets._id;
+                  var id2 = resets.idU;
+                  var transporter = nodemailer.createTransport({
+                    service: 'Gmail',
+                    auth: {
+                      user: 'idbouche2@gmail.com', // Your email id
+                      pass: 'AmirA2008' // Your password
+                    }
+                  });
+                  var emailDistintion = req.body.email
+                  var text = 'vous click sur ce lien dans 30 min va etre experimer : \n\n http://localhost:3000/resetPass/'+id+'/'+id2;
+                  var mailOptions = {
+                    from: 'idbouche2@gmail.com',
+                    to: emailDistintion,
+                    subject: 'Reset password',
+                    text: text
+                  };
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if(error){
+                      //console.log(error);
+                      res.json({yo: 'error'});
+                    }else{
+                      //console.log('Message sent: ' + info.response);
+                      return res.redirect('/login');
+                    };
+                  });
+
+                  
+                });
+              }
+            ]);
+      }
+  })
 });
 
-router.get('/resetPass', function(req, res, next) {
-  res.render('accounts/forget', {
-    errors: req.flash('errors')
-  });
+router.get('/resetPass/:id/:id2', function(req, res, next) {
+    Reset.findOne({ idU: req.params.id2 }, function(err, reset) {
+        if(err) return next(err)
+         var date = new Date();
+         var timeAfter = parseInt(reset.date) + 60000000; // creat time range
+          if (date.getTime() - timeAfter < 0) {
+            res.render('accounts/resetPass', { title: 'Express', message:'le temp est experimer'});
+          }else{
+            res.render('accounts/resetPass', { });
+          }   
+    })
+});
+
+router.post('/resetPass/:id/:id2', function (req, res, next) {
+    console.log('post reset pass')
+    console.log(req.body)
+    Reset.findOne({_id:req.params.id},function(err, reset){
+        if (err) return next(err);
+        User.findOne({ email: reset.email }, function(err, user) {
+            console.log(user)
+            if (err) return next(err);
+            if (req.body.pass) user.password = req.body.pass;
+            user.updated = new Date
+            user.save(function(err) {
+              if (err) return next(err);
+              req.flash('success', 'Successfully Edited your profile');
+              return res.redirect('/login');
+            });
+          });
+    })
+        
 });
 
 module.exports = router;
